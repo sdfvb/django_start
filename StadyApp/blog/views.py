@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.base import View
 
+from .forms import TagForm
 from .models import Post, Tag
 from .utils import ObjectDetailMixin
 
@@ -23,3 +24,10 @@ class PostDetail(ObjectDetailMixin, View):
 class TagDetail(ObjectDetailMixin, View):
     model = Tag
     template = 'blog/tag_detail.html'
+
+
+class TagCreate(View):
+
+    def get(self, request):
+        form = TagForm()
+        return render(request, 'blog/tag_create.html', context={'form': form})
