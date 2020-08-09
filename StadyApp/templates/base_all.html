@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>
+        {% block title %}
+        Block
+        {% endblock %}
+    </title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3CB371;">
+    <a class="navbar-brand">MyBlog</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                {% if request.path == '/blog/' %}
+                     <a class="nav-link active" href="{% url 'posts_list_url' %}">Blog</a>
+                {% else %}
+                     <a class="nav-link" href="{% url 'posts_list_url' %}">Blog</a>
+                {% endif %}
+            </li>
+            <li class="nav-item">
+                {% if request.path == '/blog/tags/' %}
+                     <a class="nav-link active" href="{% url 'tags_list_url' %}">Tags</a>
+                {% else %}
+                     <a class="nav-link" href="{% url 'tags_list_url' %}">Tags</a>
+                {% endif %}
+            </li>
+            <li class="nav-item">
+                {% if request.path == '/' %}
+                     <a class="nav-link active" href="{% url 'weather_app' %}">Температура</a>
+                {% else %}
+                     <a class="nav-link" href="{% url 'weather_app' %}">Температура</a>
+                {% endif %}
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+{% block container %}
+Any content
+{% endblock %}
+</body>
+</html>

@@ -17,7 +17,7 @@ class MainView(View):
                 form.save()
 
         contex = self.api_speaker()
-        return render(request, 'index.html', contex)
+        return render(request, 'weather/index.html', contex)
 
     def api_speaker(self):
         appid = '5493ef258d707a2785561ade2a80bac3'
@@ -46,6 +46,6 @@ class MainView(View):
     def get(self, request):
         contex = self.api_speaker()
 
-        return render(request, 'index.html', contex)
+        return render(request, 'weather/index.html', contex)
 
 
