@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.base import View
 
-from .forms import TagForm
+from .forms import TagForm, PostForm
 from .models import Post, Tag
-from .utils import ObjectDetailMixin
+from .utils import ObjectDetailMixin, ObjectCreateMixin
 
 
 def post_list(request):
@@ -26,8 +26,35 @@ class TagDetail(ObjectDetailMixin, View):
     template = 'blog/tag_detail.html'
 
 
-class TagCreate(View):
+class TagCreate(ObjectCreateMixin, View):
+    form_model = TagForm
+    template = 'blog/tag_create.html'
+    # def get(self, request):
+    #     form = TagForm()
+    #     return render(request, 'blog/tag_create.html', context={'form': form})
+    #
+    # def post(self, request):
+    #     bound_form = TagForm(request.POST)
+    #     if bound_form.is_valid():
+    #         new_tag = bound_form.save()
+    #         return redirect(new_tag)
+    #     else:
+    #         return render(request, 'blog/tag_create.html', context={'form': bound_form})
 
-    def get(self, request):
-        form = TagForm()
-        return render(request, 'blog/tag_create.html', context={'form': form})
+
+class PostCreate(ObjectCreateMixin, View):
+
+    form_model = PostForm
+    template = 'blog/post_create.html'
+    # def get(self, request):
+    #     # создание формы
+    #     form = PostForm()
+    #     return render(request, 'blog/post_create.html', context={'form': form})
+    #
+    # def post(self, request):
+    #     bound_form = PostForm(request.POST)
+    #     if bound_form.is_valid():
+    #         new_post = bound_form.save()
+    #         return redirect(new_post)
+    #     else:
+    #         return render(request, 'blog/post_create.html', context={'form': bound_form})
