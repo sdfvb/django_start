@@ -3,7 +3,7 @@
     <div class="card-body">
         <h5 class="mb-3">{{ post.title }}</h5>
         <p class="card-text">{{ post.body|truncatewords:15 }}</p>
-        <a href="{{ post.get_absolute_url }}" class="btn" style="background-color: #3CB371; color:#FFF">Читать</a>
+        <a href="{{ post.get_absolute_url }}" class="btn btn-success">Читать</a>
     </div>
     <div class="card-footer text-muted" style="border-color: #3CB371; background-color: #d8ebd1;">
         Tags:

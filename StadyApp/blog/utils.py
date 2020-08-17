@@ -10,7 +10,9 @@ class ObjectDetailMixin:
         # tag = Tag.objects.get(slug__iexact=slug)
         # возврашаем объект или ошибку 404
         object = get_object_or_404(self.model, slug__iexact=slug)
-        return render(request, self.template, context={self.model.__name__.lower(): object})
+        return render(request, self.template, context={self.model.__name__.lower(): object,
+                                                       'admin_object': object,
+                                                       'detail': True})
 
 
 class ObjectCreateMixin:

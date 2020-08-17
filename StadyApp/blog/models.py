@@ -20,6 +20,10 @@ class Post(models.Model):
     # Post.tags = Tag.posts
     tags = models.ManyToManyField('Tag', blank=True, related_name='posts')
 
+    class Meta:
+        # критерии сортировки
+        ordering = ['-date_pub']
+
     def get_absolute_url(self):
         """генерирует ссылку вместо {% url 'post_detail_url' slug=post.slug%}"""
         return reverse('post_detail_url', kwargs={'slug': self.slug})
@@ -46,6 +50,10 @@ class Tag(models.Model):
     slug = models.SlugField(max_length=150, unique=True)
 
     # posts от Post
+
+    class Meta:
+        # критерии сортировки
+        ordering = ['title']
 
     def __str__(self):
         return self.title
