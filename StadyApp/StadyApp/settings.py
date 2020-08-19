@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'weather',
     'blog',
+    'book_stady',
 ]
 
 MIDDLEWARE = [
@@ -118,3 +119,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+LOGIN_REDIRECT_URL = 'posts_list_url'
