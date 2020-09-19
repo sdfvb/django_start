@@ -1,8 +1,9 @@
+from django.contrib.sites import requests
 from django.shortcuts import render
 from django.views import View
 
 from .models import City
-from pip._vendor import requests
+
 from .forms import CityForm
 
 

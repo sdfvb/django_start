@@ -38,7 +38,21 @@ INSTALLED_APPS = [
     'weather',
     'blog',
     'book_stady',
+    'ckreditor_example',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Link', 'Image'],
+        ]
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -116,6 +130,10 @@ USE_TZ = True
 
 # для хранения статических файлов
 STATIC_URL = '/static/'
+STATIC_ROOT = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/media/'
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]

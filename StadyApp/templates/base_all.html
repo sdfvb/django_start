@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet"
+          href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.0/build/styles/default.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.0/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
     <title>
         {% block title %}
         Block
@@ -23,41 +27,38 @@
     </title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3CB371;">
-    <a class="navbar-brand">MyBlog</a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Experiments</a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse" id="navbarCollapse" style="">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                {% if request.path == '/blog/' %}
-                <a class="nav-link active" href="{% url 'posts_list_url' %}">Blog</a>
-                {% else %}
+            <li class="{% if request.path == '/blog/' %} nav-item active {% else %} nav-item {% endif %}">
                 <a class="nav-link" href="{% url 'posts_list_url' %}">Blog</a>
-                {% endif %}
             </li>
-            <li class="nav-item">
-                {% if request.path == '/blog/tags/' %}
-                <a class="nav-link active" href="{% url 'tags_list_url' %}">Tags</a>
-                {% else %}
+            <li class="{% if request.path == '/blog/tags/' %} nav-item active {% else %} nav-item {% endif %}">
                 <a class="nav-link" href="{% url 'tags_list_url' %}">Tags</a>
-                {% endif %}
             </li>
-            <li class="nav-item">
-                {% if request.path == '/' %}
-                <a class="nav-link active" href="{% url 'weather_app' %}">Температура</a>
-                {% else %}
+            <li class="{% if request.path == '/' %} nav-item active {% else %} nav-item {% endif %}">
                 <a class="nav-link" href="{% url 'weather_app' %}">Температура</a>
-                {% endif %}
             </li>
-            <li class="nav-item">
-                 <a href="/admin" class="nav-link">Регистрация</a>
+            <li class="{% if request.path == '/blckred/' %} nav-item active {% else %} nav-item {% endif %}">
+                <a class="nav-link" href="{% url 'post_view_ckeditor' %}">CKeditor</a>
+            </li>
+            <li class="{% if request.path == '/admin/' %} nav-item active {% else %} nav-item {% endif %}">
+                <a class="nav-link" href="/admin">Регистрация</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" action="{% url 'posts_list_url' %}">
-            <input class="form-control mr-sm-2" name="search_line" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline mt-2 mt-md-0" action="{% url 'posts_list_url' %}">
+            <input class="form-control mr-sm-2" name="search_line" type="search" placeholder="Search"
+                   aria-label="Search">
             <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
 </nav>
+
 {% block container %}
 Any content
 {% endblock %}
