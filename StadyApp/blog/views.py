@@ -50,7 +50,7 @@ def tags_list(request):
 
 class PostDetail(ObjectDetailMixin, View):
     model = Post
-    template = 'blog/post_detail.html'
+    template = 'blog/blog_detail.html'
 
 
 class TagDetail(ObjectDetailMixin, View):

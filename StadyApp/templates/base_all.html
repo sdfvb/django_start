@@ -27,41 +27,47 @@
     </title>
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#">Experiments</a>
-    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse" id="navbarCollapse" style="">
-        <ul class="navbar-nav mr-auto">
-            <li class="{% if request.path == '/blog/' %} nav-item active {% else %} nav-item {% endif %}">
-                <a class="nav-link" href="{% url 'posts_list_url' %}">Blog</a>
-            </li>
-            <li class="{% if request.path == '/blog/tags/' %} nav-item active {% else %} nav-item {% endif %}">
-                <a class="nav-link" href="{% url 'tags_list_url' %}">Tags</a>
-            </li>
-            <li class="{% if request.path == '/' %} nav-item active {% else %} nav-item {% endif %}">
-                <a class="nav-link" href="{% url 'weather_app' %}">Температура</a>
-            </li>
-            <li class="{% if request.path == '/blckred/' %} nav-item active {% else %} nav-item {% endif %}">
-                <a class="nav-link" href="{% url 'post_view_ckeditor' %}">CKeditor</a>
-            </li>
-            <li class="{% if request.path == '/admin/' %} nav-item active {% else %} nav-item {% endif %}">
-                <a class="nav-link" href="/admin">Регистрация</a>
-            </li>
-        </ul>
-        <form class="form-inline mt-2 mt-md-0" action="{% url 'posts_list_url' %}">
-            <input class="form-control mr-sm-2" name="search_line" type="search" placeholder="Search"
-                   aria-label="Search">
-            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
-</nav>
 
-{% block container %}
-Any content
-{% endblock %}
+<header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Experiments</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarCollapse" style="">
+            <ul class="navbar-nav mr-auto">
+                <li class="{% if request.path == '/blog/' %} nav-item active {% else %} nav-item {% endif %}">
+                    <a class="nav-link" href="{% url 'posts_list_url' %}">Blog</a>
+                </li>
+                <li class="{% if request.path == '/blog/tags/' %} nav-item active {% else %} nav-item {% endif %}">
+                    <a class="nav-link" href="{% url 'tags_list_url' %}">Tags</a>
+                </li>
+                <li class="{% if request.path == '/' %} nav-item active {% else %} nav-item {% endif %}">
+                    <a class="nav-link" href="{% url 'weather_app' %}">Температура</a>
+                </li>
+                <li class="{% if request.path == '/blckred/' %} nav-item active {% else %} nav-item {% endif %}">
+                    <a class="nav-link" href="{% url 'post_view_ckeditor' %}">CKeditor</a>
+                </li>
+                <li class="{% if request.path == '/admin/' %} nav-item active {% else %} nav-item {% endif %}">
+                    <a class="nav-link" href="/admin">Регистрация</a>
+                </li>
+            </ul>
+            <form class="form-inline mt-2 mt-md-0" action="{% url 'posts_list_url' %}">
+                <input class="form-control mr-sm-2" name="search_line" type="search" placeholder="Search"
+                       aria-label="Search">
+                <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+<main class="mt-4">
+    {% block container %}
+    Any content
+    {% endblock %}
+</main>
+
 
 {% if request.user.is_authenticated and request.user.is_staff %}
 
